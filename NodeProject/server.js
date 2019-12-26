@@ -80,7 +80,7 @@ app.get('/deleteStudents', (req, res) => {
             res.send(JSON.stringify(data)); // Result in JSON format
             // res.end('Record has been deleted!');
         });
-        //console.log(recordset.affectedRows)
+        //console.log(recordset.affectedRows)DCASCSAC
     })
 });
 
