@@ -72,7 +72,7 @@ app.get('/deleteStudents', (req, res) => {
         //var stringRequest = 'select * from Student_Profile';
         dbConfig.query(stringRequest, function (err, recordset) {
             if (err) console.log(err);
-            var data = {
+            var data = { 
                 status: "DELETED SUCCESSFULLY",
                 statusecode: 200,
                 message: "succesfully deleted your record"
