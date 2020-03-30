@@ -22,7 +22,7 @@ app.use(function (req, res, next) {
 app.use(bodyParser.urlencoded({ extended: true }))
 
 //Setting up server
-var server = app.listen(8080, "10.80.15.93", function () {
+var server = app.listen(8080, "192.168.43.233", function () {
     var port = server.address().port;
     console.log("App now running on port", port);
 });
@@ -45,6 +45,28 @@ app.get('/getStudents', (req, res) => {
         })
     })
 });
+app.get('/getStudentsofRank/:rankId', (req, res) => {
+    console.log(req)
+    var RankId = req.params.rankId;
+    console.log(RankId);
+    var stringRequest = "SELECT * FROM Student_Profile WHERE `Rank` =" + sql.escape(RankId);
+    dbConfig.connect(function () {
+        dbConfig.query(stringRequest, function (err, recordset) {
+            if (err) console.log(err);
+            res.send(JSON.stringify(recordset)); // Result in JSON format
+        })
+    })
+
+
+    // dbConfig.connect(function () {
+    //     var stringRequest = 'select * from Student_Profile';
+    //     dbConfig.query(stringRequest, function (err, recordset) {
+    //         if (err) console.log(err);
+    //         res.send(JSON.stringify(recordset)); // Result in JSON format
+    //     })
+    // })
+});
+
 app.post('/addStudents', (req, res) => {
     console.log(req.body)
     dbConfig.connect(function () {
